@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema 
+	targetNamespace="http://bendigobank.com.au/hub/schema"
+	xmlns:cmm="http://bendigobank.com.au/hub/schema" 
+	xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+>
+	<xsd:element ibmSchExtn:docRoot="true" name="Exception"
+		type="cmm:ExceptionType" />
+	<xsd:complexType name="ExceptionType">
+		<xsd:sequence>
+			<xsd:element name="Code" type="xsd:string" />
+			<xsd:element name="Description" type="xsd:string" />
+			<xsd:element maxOccurs="1" minOccurs="0" name="Severity"
+				type="xsd:string">
+				<xsd:annotation>
+					<xsd:documentation>Valid Values:&lt;br/&gt;
+						I = Info&lt;br/&gt;
+						W = Warning&lt;br/&gt;
+						E = Exception&lt;br/&gt;
+						C = Critical
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+</xsd:schema>
