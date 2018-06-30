@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema 
+	targetNamespace="http://bendigobank.com.au/hub/schema/ber/fault"
+	xmlns:fff="http://bendigobank.com.au/hub/schema/ber/fault" 
+	xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+>
+	<xsd:element ibmSchExtn:docRoot="true" name="BERException">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="BERCode" type="xsd:string" />
+				<xsd:element name="Description" type="xsd:string" />
+				<xsd:element maxOccurs="1" minOccurs="0" name="Severity"
+					type="xsd:string">
+					<xsd:annotation>
+						<xsd:documentation>Valid Values:
+							I = Info
+							W = Warning
+							E = Exception
+							C = Critical
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+</xsd:schema>

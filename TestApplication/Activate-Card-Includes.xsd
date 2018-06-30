@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	elementFormDefault="unqualified"
+	targetNamespace="http://bendigoadelaide.com.au/accessor/corebanking/model"
+	xmlns:cbm="http://bendigoadelaide.com.au/accessor/corebanking/model"
+	xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions"
+	>
+	
+    <xsd:annotation>
+    	<xsd:documentation>Schema doco???</xsd:documentation>
+    </xsd:annotation>
+    
+    <xsd:complexType name="ActivateCardRequestComplexType">
+    	<xsd:sequence>
+    		<xsd:element minOccurs="0" maxOccurs="1"
+    			name="CustomerNumber" type="xsd:string">
+    			<xsd:annotation></xsd:annotation>
+    		</xsd:element>
+    		<xsd:element minOccurs="0" maxOccurs="1" name="AccessId"
+    			type="xsd:string">
+    			<xsd:annotation></xsd:annotation>
+    		</xsd:element>
+    		<xsd:element minOccurs="0" maxOccurs="1" name="Password"
+    			type="xsd:string">
+    			<xsd:annotation></xsd:annotation>
+    		</xsd:element>
+    		<xsd:element minOccurs="0" maxOccurs="1" name="Token"
+    			type="xsd:string">
+    			<xsd:annotation></xsd:annotation>
+    		</xsd:element>
+    		<xsd:element minOccurs="1" maxOccurs="1" name="CardNumber"
+    			type="xsd:string">
+    			<xsd:annotation></xsd:annotation>
+    		</xsd:element>
+    	</xsd:sequence>
+    </xsd:complexType>
+    
+</xsd:schema>
