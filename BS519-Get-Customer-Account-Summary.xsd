@@ -1,0 +1,439 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	elementFormDefault="unqualified"
+	
+	targetNamespace="http://bendigoadelaide.com.au/accessor/corebanking/model"
+	xmlns:cbm="http://bendigoadelaide.com.au/accessor/corebanking/model"
+	
+	xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions"
+	xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+	>
+	
+	<xsd:element ibmSchExtn:docRoot="true"
+		name="GetCustomerAccountSummaryRequest">
+		<xsd:annotation>
+			<xsd:documentation />
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element maxOccurs="1" minOccurs="1" name="EbankingAccessID"
+					type="xsd:string">
+					<xsd:annotation>
+						<xsd:documentation>
+							Max 12 numeric CUSTOMER_NBR(1 .. 10) +
+							ACCESS_ID(2)
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element maxOccurs="1" minOccurs="1" name="InstitutionID"
+					type="xsd:string">
+					<xsd:annotation>
+						<xsd:documentation>Institution identifier, Valid values:
+							BBL- Bendigo Bank
+							ERB- Rural Bank
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element maxOccurs="1" minOccurs="1"
+					name="OnlyActiveAccounts" type="xsd:boolean">
+					<xsd:annotation>
+						<xsd:documentation>
+							If True it returns only active accounts
+							otherwise all accounts
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element ibmSchExtn:docRoot="true"
+		name="GetCustomerAccountSummaryResponse">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element maxOccurs="unbounded" minOccurs="0" name="Customer">
+					<xsd:annotation>
+						<xsd:documentation>List of customers or linked customers for this
+							user</xsd:documentation>
+					</xsd:annotation>
+					<xsd:complexType>
+						<xsd:sequence>
+							<xsd:element minOccurs="0" name="CustomerNumber"
+								type="xsd:integer">
+								<xsd:annotation>
+									<xsd:documentation />
+								</xsd:annotation>
+							</xsd:element>
+							<xsd:element minOccurs="0" name="CustomerName" type="xsd:string">
+								<xsd:annotation>
+									<xsd:documentation />
+								</xsd:annotation>
+							</xsd:element>
+							<xsd:element minOccurs="0" name="CustomerStatus"
+								type="xsd:string">
+								<xsd:annotation>
+									<xsd:documentation>
+										A character representing the
+										status of the member: A –
+										Active D – Delete or Deceased
+										W – Warning
+									</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+							<xsd:element minOccurs="0" name="CustomerType" type="xsd:string">
+								<xsd:annotation>
+									<xsd:documentation>
+										Value values: I - Individual C
+										- Corporate
+									</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+							<xsd:element minOccurs="0" name="MemberID" type="xsd:string">
+								<xsd:annotation>
+									<xsd:documentation>
+										3 character string: First
+										character is T for titled
+										member or N for non titled
+										member Next 2 characters is a
+										number from 01 to 99 that
+										makes it a unique member id
+									</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+							<xsd:element maxOccurs="1" minOccurs="0" name="NonTitledType"
+								type="xsd:string">
+								<xsd:annotation>
+									<xsd:documentation>Non-Titled member type. Example values
+										include:
+										07 - Director
+										09 - Signatory
+									</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+							<xsd:element maxOccurs="unbounded" minOccurs="0"
+								name="Account">
+								<xsd:annotation>
+									<xsd:documentation>
+										List of accounts for this
+										customer
+									</xsd:documentation>
+								</xsd:annotation>
+								<xsd:complexType>
+									<xsd:sequence>
+										<xsd:element minOccurs="0" name="XRefNumber" type="xsd:integer">
+											<xsd:annotation>
+												<xsd:documentation>
+													External reference
+													number used for
+													external bank
+													transactions
+												</xsd:documentation>
+											</xsd:annotation>
+										</xsd:element>
+										<xsd:element minOccurs="0" name="Portfolio" type="xsd:string">
+											<xsd:annotation>
+												<xsd:documentation>
+													Account Portfolio,
+													valid values: SAV
+													- Savings TDA -
+													Term Deposit DDA -
+													Demand Deposit RCA
+													- Revolving Credit
+													e.g. Credit Cards
+													MLN - Mortgage
+													Loan CLN -
+													Commercial Loan
+												</xsd:documentation>
+											</xsd:annotation>
+										</xsd:element>
+										<xsd:element minOccurs="0" name="LedgerIdentifier"
+											type="xsd:string">
+											<xsd:annotation>
+												<xsd:documentation>
+													2 characters that
+													identifies the
+													account product
+												</xsd:documentation>
+											</xsd:annotation>
+										</xsd:element>
+										<xsd:element minOccurs="0" name="AccountNumber"
+											type="xsd:integer">
+											<xsd:annotation>
+												<xsd:documentation>
+													A 2 digit number
+													from 01 to 99 that
+													combines with
+													LedgerIdentifier
+													to form a unique
+													account number for
+													the customer
+												</xsd:documentation>
+											</xsd:annotation>
+										</xsd:element>
+										<xsd:element minOccurs="0" name="AccountStatus"
+											type="xsd:string">
+											<xsd:annotation>
+												<xsd:documentation>
+													A character
+													representing the
+													status of the
+													account: Null or
+													Empty String -
+													ACTIVE - Active A
+													– DELINQUENT -
+													Active B -
+													BANKRUPT - Post
+													Active C - CLOSED
+													or CANCELLED -
+													Post Active D -
+													DELETE - Post
+													Active F - FROZEN
+													or FINALISED -
+													Post Active G -
+													APPL PEND - Pre
+													Active H - APPL
+													DECLD - Post
+													Active L - LATE 1
+													PMT - Active O -
+													OPEN/ACTIVE -
+													Active P - PAID -
+													Post Active R -
+													DEFERRED - Active
+													S - SUSPENDED -
+													Active T –
+													FORECLOSED -
+													Active W - WRITE
+													OFF - Post Active
+													0 - APPLICATION -
+													Pre Active 1 -
+													APPROVAL - Pre
+													Active 2 -
+													INTEREST - Pre
+													Active 3 - PAYMENT
+													- Pre Active 4 -
+													DRAW DOWN - Pre
+													Active 5 -
+													SETTLEMENT - Pre
+													Active 9 -
+													CANCELLED - Post
+													Active
+												</xsd:documentation>
+											</xsd:annotation>
+										</xsd:element>
+										<xsd:element minOccurs="0" name="CurrentBalance"
+											type="xsd:decimal">
+											<xsd:annotation>
+												<xsd:documentation />
+											</xsd:annotation>
+										</xsd:element>
+										<xsd:element minOccurs="0" name="AvailableBalance"
+											type="xsd:decimal">
+											<xsd:annotation>
+												<xsd:documentation>
+													The true available
+													balance of the
+													account, does not
+													suffer the problem
+													IB classic has of
+													expired funds on
+													hold being
+													included For an
+													MLN (mortgage
+													account) that is
+													allowed to redraw,
+													this value will
+													show the amount
+													they are allowed
+													to redraw
+												</xsd:documentation>
+											</xsd:annotation>
+										</xsd:element>
+
+										<xsd:element minOccurs="0" name="AccountNickName"
+											type="xsd:string">
+											<xsd:annotation>
+												<xsd:documentation>
+													A user configured
+													account name to
+													override the RFS
+													one in internet
+													banking
+												</xsd:documentation>
+											</xsd:annotation>
+										</xsd:element>
+										<xsd:element maxOccurs="1" minOccurs="0"
+											name="DispersalType" type="xsd:string">
+											<xsd:annotation>
+												<xsd:documentation>
+													Account statement
+													disbersal type
+												</xsd:documentation>
+											</xsd:annotation>
+										</xsd:element>
+										<xsd:element maxOccurs="1" minOccurs="0" name="AccessFlag"
+											type="xsd:string">
+											<xsd:annotation>
+												<xsd:documentation>
+													Used to determine
+													if the account is
+													read only. Null
+													means full access
+													or R indicates
+													read only (i.e.
+													cannot withdraw)
+												</xsd:documentation>
+											</xsd:annotation>
+										</xsd:element>
+										<xsd:element maxOccurs="1" minOccurs="0"
+											name="SpecialTerms" type="xsd:string">
+											<xsd:annotation>
+												<xsd:documentation>
+													30 byte free
+													format field. Not
+													relevant to titled
+													members (e.g.
+													T01). For non
+													titled member,
+													indicates who can
+													withdraw from that
+													account. N01N03N05
+													- If your N number
+													is NOT in the
+													list, you cannot
+													see or withdraw
+													from that account.
+													Note: if
+													AccessFlag is R,
+													can see it but not
+													withdraw. R trumps
+													SpecialTerms.
+												</xsd:documentation>
+											</xsd:annotation>
+										</xsd:element>
+										<xsd:element minOccurs="0" name="TransactionStops"
+											type="xsd:string">
+											<xsd:annotation>
+												<xsd:documentation>
+													20 chars (0 or 1)
+													- e.g.
+													10000010000000000000.
+													Each byte is a
+													boolean transtop.
+													Each one has its
+													own meaning.
+													TranStop 1 -
+													indicates multi
+													signatory account.
+													Note: not being
+													set does not mean
+													it is not muti sig
+													- see NumberToSign
+													field. TranStop 7
+													- (for branch
+													staff) - direct
+													branch staff to
+													comments field
+													(e.g. speak up,
+													customer is going
+													deaf). If 1 by
+													itself, or 7 by
+													itself, or 1 &amp;
+													7 but nothing
+													else, the account
+													can go in the From
+													list when
+													performing a
+													transaction. If
+													any other transtop
+													is set - cannot
+													withdraw from
+													account.
+												</xsd:documentation>
+											</xsd:annotation>
+										</xsd:element>
+										<xsd:element maxOccurs="1" minOccurs="0"
+											name="NumberToSign" type="xsd:integer">
+											<xsd:annotation>
+												<xsd:documentation>
+													The number of
+													users that must
+													authorise a
+													transaction on
+													this account
+												</xsd:documentation>
+											</xsd:annotation>
+										</xsd:element>
+										<xsd:element minOccurs="0" name="DisplayInIB"
+											type="xsd:boolean">
+											<xsd:annotation>
+												<xsd:documentation>
+													true if this
+													account should be
+													displayed in IB,
+													false if it has
+													been nominated as
+													a hidden account.
+													Note there are
+													other rules that
+													might result in an
+													account being
+													undisplayable
+													(such as the
+													status of the
+													account), this is
+													specifically
+													whether the user
+													has opted not to
+													display it
+												</xsd:documentation>
+											</xsd:annotation>
+										</xsd:element>
+										<xsd:element maxOccurs="1" minOccurs="0"
+											name="IsPassbookAccount" type="xsd:boolean">
+											<xsd:annotation>
+												<xsd:documentation>Indicates if the account is a passbook
+													account. Following businss rules apply:
+													- Passbook accounts are only associated with SAV and TDA
+													accounts.
+													- Statements are not generated for passbook accounts.
+												</xsd:documentation>
+											</xsd:annotation>
+										</xsd:element>
+									</xsd:sequence>
+								</xsd:complexType>
+							</xsd:element>
+						</xsd:sequence>
+					</xsd:complexType>
+				</xsd:element>
+				<xsd:element maxOccurs="1" minOccurs="0" name="InstitutionID"
+					type="xsd:string">
+					<xsd:annotation>
+						<xsd:documentation>Institution identifier, Valid values:
+							BBL- Bendigo Bank
+							ERB- Rural Bank
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="TransactionStatusCode" type="xsd:integer">
+					<xsd:annotation>
+						<xsd:documentation>Success normally returns 0000
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="TransactionStatusMessage" type="xsd:string">
+					<xsd:annotation>
+						<xsd:documentation>Success normally returns P0000-REQUEST COMPLETE
+							otherwise it's the relevant RFS error</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="TransactionSuccessful" type="xsd:boolean">
+					<xsd:annotation>
+						<xsd:documentation>true if transaction was successful
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+
+</xsd:schema>

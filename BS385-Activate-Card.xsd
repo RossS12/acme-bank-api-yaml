@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	elementFormDefault="unqualified"
+	targetNamespace="http://bendigoadelaide.com.au/accessor/corebanking/model"
+	xmlns:cbm="http://bendigoadelaide.com.au/accessor/corebanking/model"
+	xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions"
+	>
+
+	<xsd:include schemaLocation="Activate-Card-Includes.xsd" />
+	
+	<xsd:import schemaLocation="BER-Fault.xsd" />
+		
+    <xsd:element ibmSchExtn:docRoot="true" name="ActivateCardRequest" type="cbm:ActivateCardRequestComplexType">
+        <xsd:annotation>
+        	<xsd:documentation>Activate Card Request Doco</xsd:documentation>
+        </xsd:annotation>
+	</xsd:element>
+	
+	<xsd:element ibmSchExtn:docRoot="true" name="ActivateCardResponse">
+        <xsd:annotation>
+        	<xsd:documentation>Activate Card Response doco</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="ResponseCode" type="xsd:string" />
+				<xsd:element name="ResponseMessage" type="xsd:string" />
+				<xsd:element name="ResponseStatus" type="xsd:string" />
+				<xsd:element name="ReleaseDate" type="xsd:string">
+					<xsd:annotation>
+						<xsd:documentation>This value is returned if the release date of
+							the card being activated is future dated
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="Result" type="xsd:string">
+					<xsd:annotation>
+						<xsd:documentation>Success if successful, Failed if unsuccessful
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+
+</xsd:schema>
