@@ -6,9 +6,6 @@
 	xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions"
 	>
 
-	<xsd:include schemaLocation="Activate-Card-Includes.xsd" />
-	
-	<xsd:import schemaLocation="BER-Fault.xsd" />
 		
     <xsd:element ibmSchExtn:docRoot="true" name="ActivateCardRequest" type="cbm:ActivateCardRequestComplexType">
         <xsd:annotation>
