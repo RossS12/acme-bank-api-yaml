@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	elementFormDefault="unqualified"
+	
+	targetNamespace="http://bendigoadelaide.com.au/accessor/corebanking/model"
+	xmlns:cbm="http://bendigoadelaide.com.au/accessor/corebanking/model"
+	
+	xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions"
+	xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+	>
+	<xsd:element ibmSchExtn:docRoot="true"
+		name="UpdateStatementPreferencesRequest">
+		<xsd:annotation>
+			<xsd:documentation />
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element maxOccurs="1" minOccurs="1" name="XRefNumber"
+					type="xsd:integer">
+					<xsd:annotation>
+						<xsd:documentation>
+							External reference number used for
+							external bank transactions
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element maxOccurs="1" minOccurs="1" name="CustomerNumber"
+					type="xsd:integer">
+					<xsd:annotation>
+						<xsd:documentation>
+							The 10 digit customer number for the
+							account
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element maxOccurs="1" minOccurs="1" name="LedgerIdentifier"
+					type="xsd:string">
+					<xsd:annotation>
+						<xsd:documentation>
+							The 2 digit ledger product identifier
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element maxOccurs="1" minOccurs="1" name="AccountNumber"
+					type="xsd:integer">
+					<xsd:annotation>
+						<xsd:documentation>
+							The 2 digit account number
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element maxOccurs="1" minOccurs="1" name="InstitutionID"
+					type="xsd:string">
+					<xsd:annotation>
+						<xsd:documentation>Institution identifier, Valid values:
+							BBL- Bendigo Bank
+							ERB- Rural Bank
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element maxOccurs="1" minOccurs="1"
+					name="DeliveryPreference" type="xsd:string">
+					<xsd:annotation>
+						<xsd:documentation>Statement delivery preference, validvalues:
+							PaperAndOnline
+							OnlineOnly
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element maxOccurs="3" minOccurs="1" name="EmailAddress"
+					type="xsd:string">
+					<xsd:annotation>
+						<xsd:documentation>Statement delivery email address. There is
+							limit of 3 email addresses per statement preference.
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element ibmSchExtn:docRoot="true"
+		name="UpdateStatementPreferencesResponse">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="Successful" type="xsd:boolean">
+				</xsd:element>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+
+</xsd:schema>
